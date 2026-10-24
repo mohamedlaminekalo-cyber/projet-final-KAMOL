@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant MOYAH - Les saveurs authentiques de la Côte d'Ivoire</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        moyahOrange: '#FF7A00',
+                        moyahGreen: '#1A5319',
+                        moyahCream: '#FDFBF7',
+                        moyahDark: '#2C2C2C',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-moyahCream text-moyahDark font-sans antialiased">
+
+    <!-- BARRE DE NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-black text-moyahGreen tracking-wide flex items-center gap-2">
+                        <i class="fa-solid fa-utensils text-moyahOrange"></i> MOYAH
+                    </a>
+                </div>
+
+                <!-- Navigation Desktop -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#accueil" class="font-medium text-moyahDark hover:text-moyahOrange transition-colors">Accueil</a>
+                    <a href="#menu" class="font-medium text-moyahDark hover:text-moyahOrange transition-colors">Notre menu</a>
+                    <a href="#apropos" class="font-medium text-moyahDark hover:text-moyahOrange transition-colors">À propos</a>
+                    <a href="#contact" class="font-medium text-moyahDark hover:text-moyahOrange transition-colors">Contact</a>
+                </nav>
+
+                <!-- Bouton Panier & Mobile Menu -->
+                <div class="flex items-center gap-4">
+                    <button id="cart-btn" class="relative bg-moyahOrange text-white px-4 py-2.5 rounded-full font-semibold flex items-center gap-2 hover:bg-orange-600 transition shadow-md">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                        <span class="hidden sm:inline">Panier</span>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-moyahGreen text-white text-xs w-6 h-6 rounded-full flex items-center justify-center font-bold border-2 border-white shadow">0</span>
+                    </button>
+
+                    <!-- Bouton Menu Hamburger Mobile -->
+                    <button id="menu-toggle" class="md:hidden text-moyahDark text-2xl focus:outline-none">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Déroulant -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 pt-2 pb-6 space-y-3 shadow-lg">
+            <a href="#accueil" class="block font-medium py-2 text-moyahDark hover:text-moyahOrange">Accueil</a>
+            <a href="#menu" class="block font-medium py-2 text-moyahDark hover:text-moyahOrange">Notre menu</a>
+            <a href="#apropos" class="block font-medium py-2 text-moyahDark hover:text-moyahOrange">À propos</a>
+            <a href="#contact" class="block font-medium py-2 text-moyahDark hover:text-moyahOrange">Contact</a>
+        </div>
+    </header>
+
+    <!-- SECTION D'ACCUEIL (HERO) -->
+    <section id="accueil" class="relative bg-moyahGreen text-white py-24 md:py-32 overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image: url('image/poulet%20brais%C3%A9.jpeg');"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+            <span class="inline-block bg-moyahOrange text-white text-xs sm:text-sm font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6 shadow-sm">
+                Cuisine 100% Traditionnelle & Bio
+            </span>
+            <h1 class="text-4xl sm:text-6xl font-black tracking-tight mb-6">
+                Bienvenue au Restaurant <span class="text-moyahOrange">MOYAH</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg sm:text-xl text-gray-100 mb-10 font-light">
+                Découvrez les saveurs authentiques de la cuisine ivoirienne, préparées avec passion et servies avec amour.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#menu" class="bg-moyahOrange hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-full shadow-lg transition transform hover:-translate-y-0.5">
+                    Découvrir notre menu
+                </a>
+                <a href="#menu" id="hero-order-btn" class="bg-white hover:bg-gray-100 text-moyahGreen font-bold px-8 py-4 rounded-full shadow-lg transition transform hover:-translate-y-0.5">
+                    Commander maintenant
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION NOTRE MENU -->
+    <section id="menu" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl sm:text-4xl font-black text-moyahGreen mb-3">Notre Menu Authentique</h2>
+            <p class="text-gray-600 max-w-xl mx-auto">Laissez-vous tenter par nos spécialités ivoiriennes préparées dans la pure tradition.</p>
+        </div>
+
+        <!-- Filtres et Recherche -->
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-10">
+            <!-- Boutons de Catégories -->
+            <div id="category-filters" class="flex flex-wrap justify-center gap-2">
+                <button data-category="tous" class="category-btn active bg-moyahOrange text-white px-5 py-2.5 rounded-full font-medium text-sm shadow transition">Tous les plats</button>
+                <button data-category="traditionnel" class="category-btn bg-white text-moyahDark border border-gray-200 px-5 py-2.5 rounded-full font-medium text-sm hover:bg-gray-50 transition">Plats traditionnels</button>
+                <button data-category="sauces" class="category-btn bg-white text-moyahDark border border-gray-200 px-5 py-2.5 rounded-full font-medium text-sm hover:bg-gray-50 transition">Sauces et accompagnements</button>
+                <button data-category="grillades" class="category-btn bg-white text-moyahDark border border-gray-200 px-5 py-2.5 rounded-full font-medium text-sm hover:bg-gray-50 transition">Grillades</button>
+            </div>
+
+            <!-- Barre de recherche -->
+            <div class="w-full md:w-72 relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">
+                    <i class="fa-solid fa-search"></i>
+                </span>
+                <input type="text" id="search-input" placeholder="Rechercher un plat..." class="w-full pl-11 pr-4 py-2.5 bg-white border border-gray-200 rounded-full focus:outline-none focus:border-moyahOrange text-sm shadow-sm">
+            </div>
+        </div>
+
+        <!-- Grille des Plats -->
+        <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Les plats seront injectés dynamiquement par JavaScript -->
+        </div>
+    </section>
+
+    <!-- SECTION À PROPOS -->
+    <section id="apropos" class="bg-white py-20 border-t border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-moyahOrange font-bold uppercase tracking-wider text-sm">Notre Philosophie</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-moyahGreen mt-2 mb-6">Au Restaurant MOYAH, on ne mange pas, on se retrouve. 👌</h2>
+                    <div class="space-y-4 text-gray-700 leading-relaxed font-light text-base sm:text-lg">
+                        <p>C'est le goût de l'Afrique comme à la maison. Des plats 100% bio, frais, sains, préparés avec amour et des produits de chez nous.</p>
+                        <p>Juste le vrai goût. Celui qui te rappelle le village, qui nourrit ton corps et qui fait du bien à ton âme.</p>
+                        <div class="bg-moyahCream p-6 rounded-2xl border-l-4 border-moyahOrange my-6 shadow-sm">
+                            <p class="font-bold text-moyahDark mb-2">Tu veux manger SAIN ? BIO ? VRAI ?</p>
+                            <p class="text-moyahGreen font-semibold">Une seule adresse : MOYAH. Le restaurant typiquement africain qui prend soin de toi.</p>
+                        </div>
+                        <p class="font-medium text-moyahOrange italic">Viens avec ta faim, repars avec le sourire.</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute -inset-2 bg-moyahOrange/20 rounded-3xl transform rotate-2"></div>
+                    <img src="image/foutou%20sauce%20graine.jpg" alt="Plat de foutou sauce graine du restaurant MOYAH" class="relative rounded-3xl shadow-xl w-full h-[450px] object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION CONTACT -->
+    <section id="contact" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl sm:text-4xl font-black text-moyahGreen mb-3">Contactez-Nous</h2>
+            <p class="text-gray-600 max-w-xl mx-auto">Une question, une réservation ou une commande spéciale ? Nous sommes à votre écoute.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-2xl shadow-sm text-center border border-gray-100 flex flex-col items-center">
+                <div class="w-14 h-14 bg-moyahOrange/10 text-moyahOrange rounded-full flex items-center justify-center text-xl mb-4">
+                    <i class="fa-solid fa-phone"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2">Téléphone</h3>
+                <p class="text-gray-600 mb-4">+225 07 07 59 60 72</p>
+                <a href="tel:+2250707596072" class="text-moyahOrange font-semibold text-sm hover:underline mt-auto">Appeler maintenant</a>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-sm text-center border border-gray-100 flex flex-col items-center">
+                <div class="w-14 h-14 bg-moyahGreen/10 text-moyahGreen rounded-full flex items-center justify-center text-xl mb-4">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2">Adresse</h3>
+                <p class="text-gray-600 mb-4">Abidjan, Angré Château, Côte d'Ivoire</p>
+                <span class="text-gray-400 text-sm mt-auto">Ouvert 7j/7</span>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-sm text-center border border-gray-100 flex flex-col items-center">
+                <div class="w-14 h-14 bg-moyahOrange/10 text-moyahOrange rounded-full flex items-center justify-center text-xl mb-4">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2">Horaires d'ouverture</h3>
+                <p class="text-gray-600 mb-4">Lundi - Dimanche<br>11h00 - 23h00</p>
+                <span class="text-moyahGreen font-semibold text-sm mt-auto">Service continu</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-moyahDark text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-black text-white mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-utensils text-moyahOrange"></i> MOYAH
+                    </h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Les saveurs authentiques de la Côte d'Ivoire directement dans votre assiette.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Liens rapides</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#accueil" class="hover:text-moyahOrange transition">Accueil</a></li>
+                        <li><a href="#menu" class="hover:text-moyahOrange transition">Notre menu</a></li>
+                        <li><a href="#apropos" class="hover:text-moyahOrange transition">À propos</a></li>
+                        <li><a href="#contact" class="hover:text-moyahOrange transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Coordonnées</h4>
+                    <p class="text-sm text-gray-400 mb-2">Abidjan, Angré Château</p>
+                    <p class="text-sm text-gray-400 mb-2">Tél : +225 07 07 59 60 72</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Horaires</h4>
+                    <p class="text-sm text-gray-400">7j/7 : 11h00 - 23h00</p>
+                    <div class="flex mt-4">
+                        <a href="https://wa.me/2250707596072" aria-label="Contacter le restaurant sur WhatsApp" title="Contacter le restaurant sur WhatsApp" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-moyahOrange transition text-white"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+                <p>&copy; <span id="current-year">2026</span> Restaurant MOYAH. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL / TIROIR DU PANIER -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div id="cart-overlay" class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
+                <!-- En-tête du Panier -->
+                <div class="p-6 bg-moyahGreen text-white flex justify-between items-center">
+                    <h3 class="text-xl font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-basket-shopping"></i> Votre Panier
+                    </h3>
+                    <button id="close-cart" class="text-white hover:text-moyahOrange text-xl focus:outline-none">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Corps du Panier (Liste des articles) -->
+                <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+                    <!-- Injecté dynamiquement -->
+                </div>
+
+                <!-- Pied du Panier (Totaux et Formulaire) -->
+                <div class="border-t border-gray-100 p-6 bg-gray-50">
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between text-sm text-gray-600">
+                            <span>Sous-total</span>
+                            <span id="cart-subtotal">0 FCFA</span>
+                        </div>
+                        <div class="flex justify-between text-sm text-gray-600">
+                            <span>Frais de livraison (indicatif)</span>
+                            <span id="cart-delivery-fee">1 500 FCFA</span>
+                        </div>
+                        <div class="flex justify-between text-lg font-black text-moyahGreen pt-2 border-t border-gray-200">
+                            <span>Total</span>
+                            <span id="cart-total">0 FCFA</span>
+                        </div>
+                    </div>
+
+                    <button id="checkout-btn" class="w-full bg-moyahOrange hover:bg-orange-600 text-white font-bold py-3.5 rounded-xl shadow-lg transition">
+                        Valider la commande
+                    </button>
+                    <button id="clear-cart-btn" class="w-full mt-2 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2.5 rounded-xl text-sm transition">
+                        Vider le panier
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE FORMULAIRE DE COMMANDE -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+        <div id="checkout-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
+        <div class="relative bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl z-10 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-black text-moyahGreen">Finaliser votre commande</h3>
+                <button id="close-checkout" class="text-gray-400 hover:text-moyahDark text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="order-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Nom et prénom *</label>
+                    <input type="text" id="client-name" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-moyahOrange text-sm" placeholder="Ex: Kouassi Jean">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Numéro de téléphone *</label>
+                    <input type="tel" id="client-phone" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-moyahOrange text-sm" placeholder="Ex: +225 07 00 00 00 00">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Mode de réception *</label>
+                    <select id="delivery-mode" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-moyahOrange text-sm">
+                        <option value="livraison">Livraison à domicile (+1 500 FCFA)</option>
+                        <option value="retrait">Retrait au restaurant (Gratuit)</option>
+                    </select>
+                </div>
+
+                <div id="address-container">
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Adresse de livraison *</label>
+                    <textarea id="client-address" rows="2" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-moyahOrange text-sm" placeholder="Commune, Quartier, Repères précis..."></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Instructions particulières ou commentaires</label>
+                    <textarea id="client-notes" rows="2" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-moyahOrange text-sm" placeholder="Ex: Sans piment, son de poulet bien cuit..."></textarea>
+                </div>
+
+                <div class="bg-moyahCream p-4 rounded-xl border border-orange-100">
+                    <div class="flex justify-between font-bold text-moyahGreen text-base">
+                        <span>Total à payer :</span>
+                        <span id="modal-final-total">0 FCFA</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-moyahOrange hover:bg-orange-600 text-white font-bold py-4 rounded-xl shadow-lg transition">
+                    Confirmer et générer le bon de commande
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DE CONFIRMATION / RECAPITULATIF IMPRIMABLE -->
+    <div id="receipt-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+        <div class="fixed inset-0 bg-black/50 backdrop-blur-sm"></div>
+        <div class="relative bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl z-10 max-h-[90vh] overflow-y-auto">
+            <div id="printable-area" class="space-y-6">
+                <div class="text-center border-b border-gray-200 pb-4">
+                    <h2 class="text-2xl font-black text-moyahGreen">RESTAURANT MOYAH</h2>
+                    <p class="text-xs text-gray-500">Les saveurs authentiques de la Côte d'Ivoire</p>
+                    <p class="text-sm font-bold text-moyahOrange mt-2">BON DE COMMANDE</p>
+                </div>
+
+                <div class="text-sm space-y-1 text-gray-600">
+                    <p><strong>N° de commande :</strong> <span id="receipt-order-id"></span></p>
+                    <p><strong>Date & Heure :</strong> <span id="receipt-date"></span></p>
+                    <p><strong>Client :</strong> <span id="receipt-name"></span></p>
+                    <p><strong>Téléphone :</strong> <span id="receipt-phone"></span></p>
+                    <p><strong>Mode :</strong> <span id="receipt-mode"></span></p>
+                    <p id="receipt-address-wrapper"><strong>Adresse :</strong> <span id="receipt-address"></span></p>
+                    <p id="receipt-notes-wrapper"><strong>Instructions :</strong> <span id="receipt-notes"></span></p>
+                </div>
+
+                <div class="border-t border-b border-gray-200 py-4">
+                    <h4 class="font-bold text-sm mb-2 text-moyahDark">Plats commandés :</h4>
+                    <div id="receipt-items-list" class="space-y-2 text-sm">
+                        <!-- Injecté dynamiquement -->
+                    </div>
+                </div>
+
+                <div class="space-y-1 text-sm text-right">
+                    <p>Sous-total : <span id="receipt-subtotal"></span></p>
+                    <p>Frais de livraison : <span id="receipt-delivery"></span></p>
+                    <p class="text-lg font-black text-moyahGreen pt-2">Montant total : <span id="receipt-total"></span></p>
+                </div>
+
+                <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-xs text-amber-800">
+                    ⚠️ <strong>Important :</strong> Ce document est un récapitulatif de commande. Étant donné que le système fonctionne sans serveur, la commande est enregistrée localement. Veuillez cliquer sur le bouton ci-dessous pour l'envoyer directement au restaurant via WhatsApp.
+                </div>
+            </div>
+
+            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+                <button id="whatsapp-order-btn" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl shadow transition flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Commander sur WhatsApp
+                </button>
+                <button id="print-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold px-5 py-3 rounded-xl transition">
+                    <i class="fa-solid fa-print"></i> Imprimer
+                </button>
+                <button id="close-receipt" class="bg-moyahDark hover:bg-black text-white font-bold px-5 py-3 rounded-xl transition">
+                    Fermer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
