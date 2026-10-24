@@ -382,6 +382,7 @@ function handleOrderSubmit(e) {
     const name = document.getElementById('client-name').value.trim();
     const phone = document.getElementById('client-phone').value.trim();
     const mode = deliveryModeSelect.value;
+    const paymentMethod = document.getElementById('payment-method').value;
     const address = clientAddressInput.value.trim();
     const notes = document.getElementById('client-notes').value.trim();
 
@@ -405,6 +406,7 @@ function handleOrderSubmit(e) {
         name,
         phone,
         mode: mode === 'livraison' ? 'Livraison à domicile' : 'Retrait au restaurant',
+        paymentMethod,
         address: mode === 'livraison' ? address : 'N/A (Retrait sur place)',
         notes: notes || 'Aucune',
         items: [...cart],
@@ -419,6 +421,7 @@ function handleOrderSubmit(e) {
     document.getElementById('receipt-name').textContent = name;
     document.getElementById('receipt-phone').textContent = phone;
     document.getElementById('receipt-mode').textContent = lastOrderData.mode;
+    document.getElementById('receipt-payment').textContent = paymentMethod;
     
     if (mode === 'livraison') {
         document.getElementById('receipt-address-wrapper').style.display = 'block';
@@ -470,6 +473,7 @@ function sendOrderToWhatsApp() {
     message += `👤 *Client :* ${lastOrderData.name}\n`;
     message += `📞 *Téléphone :* ${lastOrderData.phone}\n`;
     message += `📍 *Mode :* ${lastOrderData.mode}\n`;
+    message += `💳 *Paiement :* ${lastOrderData.paymentMethod} au +225 07 07 59 60 72\n`;
     if (lastOrderData.mode === 'Livraison à domicile') {
         message += `🏠 *Adresse :* ${lastOrderData.address}\n`;
     }
